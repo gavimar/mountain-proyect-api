@@ -12,7 +12,7 @@ const Route = (props) => {
     return (
         <div>
         <li className="route" id={props.key} >
-            
+    <   h1>{props.name}</h1>
             <img src={props.photo} alt={props.name} />
             <a href={props.url}>Url</a>
         </li>
