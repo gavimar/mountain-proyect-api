@@ -23,10 +23,9 @@ var myIcon = L.icon({
 
 })
 
-class MyMap extends React.Component {
-  constructor() {
-    super()
-    this.state = {
+const MyMap = () => {
+  
+    const coordinates = {
       lat: 40.404306399999996,
       lng: -3.6521948,
       zoom: 13,
@@ -35,10 +34,10 @@ class MyMap extends React.Component {
         lat: 40.7516 ,
         lng: -3.8859
       }
-    }
+    
   }
 
-  greenIcon = L.icon({
+  const greenIcon = L.icon({
     iconUrl : GreenLeaf,
     shadowUrl : LeafShadow,
     iconSize:     [38, 95], // size of the icon
@@ -48,11 +47,11 @@ class MyMap extends React.Component {
     popupAnchor:  [-3, -76] 
   })
 
-  render() {
-    const position = [this.state.lat, this.state.lng];
-    const positionGreen = [this.state.greenIcon.lat, this.state.greenIcon.lng];
+  
+    const position = [coordinates.lat, coordinates.lng];
+    const positionGreen = [coordinates.greenIcon.lat, coordinates.greenIcon.lng];
     return (
-      <Map className = "map" center={position} zoom={this.state.zoom}>
+      <Map className = "map" center={position} zoom={coordinates.zoom}>
       <TileLayer
         attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -62,14 +61,14 @@ class MyMap extends React.Component {
           A pretty CSS3 popup. <br /> Easily customizable.
         </Popup>
       </Marker>
-      <Marker position={positionGreen} icon={this.greenIcon} >
+      <Marker position={positionGreen} icon={greenIcon} >
         <Popup>
           A pretty CSS3 popup. <br /> Easily customizable.
         </Popup>
       </Marker>
     </Map>
     )
-}
+
 }
 
 
