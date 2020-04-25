@@ -1,5 +1,6 @@
   import React,{useState, useEffect} from 'react';
   import RouteList from './RouteList';
+  import '../stylesheets/App.scss';
  
 
 
@@ -43,15 +44,15 @@
       
     }
     
-    const getClosest =() =>{
-      setSearch(!search);
-    }
+    // const getClosest =() =>{
+    //   setSearch(!search);
+    // }
 
     return(
       <div className ="wrapper">
       <header className="header">
       <h1>Rock climbing routes finder</h1>
-      <button type="button" className="closestButton" onClick={getClosest}>Get closest</button>
+      {/* <button type="button" className="closestButton" onClick={getClosest}>Get closest</button> */}
     </header>
       
       <h2>Geo location</h2>
