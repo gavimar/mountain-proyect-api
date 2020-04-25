@@ -1,6 +1,10 @@
 import React from 'react';
 import L from 'leaflet';
 import {Map, TileLayer, Marker, Popup} from 'react-leaflet';
+import GreenLeaf from '../images/leaf-green.png';
+import LeafShadow from '../images/leaf-shadow.png';
+import RedLeaf from '../images/leaf-red.png';
+import OrangeLeaaf from '../images/leaf-orange.png';
 
 // const { Map: LeafletMap, TileLayer, Marker, Popup } = ReactLeaflet
 
@@ -25,12 +29,28 @@ class MyMap extends React.Component {
     this.state = {
       lat: 40.404306399999996,
       lng: -3.6521948,
-      zoom: 13
+      zoom: 13,
+
+      greenIcon:{
+        lat: 40.7516 ,
+        lng: -3.8859
+      }
     }
   }
 
+  greenIcon = L.icon({
+    iconUrl : GreenLeaf,
+    shadowUrl : LeafShadow,
+    iconSize:     [38, 95], // size of the icon
+    shadowSize:   [50, 64], 
+    iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+    shadowAnchor: [4, 62],  // the same for the shadow
+    popupAnchor:  [-3, -76] 
+  })
+
   render() {
     const position = [this.state.lat, this.state.lng];
+    const positionGreen = [this.state.greenIcon.lat, this.state.greenIcon.lng];
     return (
       <Map className = "map" center={position} zoom={this.state.zoom}>
       <TileLayer
@@ -38,6 +58,11 @@ class MyMap extends React.Component {
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
       <Marker position={position} icon={myIcon} >
+        <Popup>
+          A pretty CSS3 popup. <br /> Easily customizable.
+        </Popup>
+      </Marker>
+      <Marker position={positionGreen} icon={this.greenIcon} >
         <Popup>
           A pretty CSS3 popup. <br /> Easily customizable.
         </Popup>
