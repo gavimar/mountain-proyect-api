@@ -29,7 +29,10 @@ return(
 
   <div className="search-container">
     <div className="mapid"></div>
-    <MyMap></MyMap>
+    <MyMap
+    latitude = {props.latitude}
+    longitude = {props.longitude}
+    ></MyMap>
   
   <ul>
     <button onClick = {getClosest}>Fetchclosest</button>

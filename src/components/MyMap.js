@@ -1,12 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import L from 'leaflet';
 import {Map, TileLayer, Marker, Popup} from 'react-leaflet';
 import GreenLeaf from '../images/leaf-green.png';
 import LeafShadow from '../images/leaf-shadow.png';
 import RedLeaf from '../images/leaf-red.png';
 import OrangeLeaaf from '../images/leaf-orange.png';
-
-// const { Map: LeafletMap, TileLayer, Marker, Popup } = ReactLeaflet
 
 // type State = {
 //   lat: number,
@@ -23,8 +21,10 @@ var myIcon = L.icon({
 
 })
 
-const MyMap = () => {
-  
+
+
+const MyMap = (props) => {
+    console.log(props.latitude)
     const coordinates = {
       lat: 40.404306399999996,
       lng: -3.6521948,
@@ -36,6 +36,13 @@ const MyMap = () => {
       }
     
   }
+  let [markers, setMarkers] = useState ([[40.404306399999996, -3.6521948]])
+  console.log(markers)
+
+const  addMarker = () => {
+  markers.push([40.7516, -3.8859])
+  setMarkers(markers)
+}
 
   const greenIcon = L.icon({
     iconUrl : GreenLeaf,
@@ -51,12 +58,21 @@ const MyMap = () => {
     const position = [coordinates.lat, coordinates.lng];
     const positionGreen = [coordinates.greenIcon.lat, coordinates.greenIcon.lng];
     return (
-      <Map className = "map" center={position} zoom={coordinates.zoom}>
+      <div>
+      <button type="button" onClick={addMarker}>Locate yourself</button>
+      <Map className = "map" center={position} zoom={coordinates.zoom} >
       <TileLayer
         attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
-      <Marker position={position} icon={myIcon} >
+       {markers.map((myPosition, idx) => 
+          <Marker key={`marker-${idx}`} position={myPosition} icon={myIcon}>
+          <Popup>
+            <span>Popup</span>
+          </Popup>
+        </Marker>
+        )}
+      {/* <Marker position={position} icon={myIcon} >
         <Popup>
           A pretty CSS3 popup. <br /> Easily customizable.
         </Popup>
@@ -65,8 +81,9 @@ const MyMap = () => {
         <Popup>
           A pretty CSS3 popup. <br /> Easily customizable.
         </Popup>
-      </Marker>
+      </Marker> */}
     </Map>
+    </div>
     )
 
 }
