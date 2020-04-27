@@ -45,12 +45,24 @@ const MyMap = (props) => {
 
   function moveMarker() {
     setMarkerPosition({
-      lat: 40.404306399999996,
-      lng: -3.6521948
+      lat: props.latitude,
+      lng: props.longitude
+      // lat: 40.404306399999996,
+      // lng: -3.6521948
     });
   }
 
-  let [markers, setMarkers] = useState ([[40.404306399999996, -3.6521948]])
+  const [routesCoor, setCoor] = useState([]);
+
+const getCoor = () => {
+  for (let route of props.data){
+    routesCoor.push([route.longitude, route.latitude])
+    setCoor(routesCoor)
+  } return routesCoor;
+  
+}
+
+  let [markers, setMarkers] = useState ([[49.8419, 24]])
   console.log(markers)
 
   let [hidden, setHidden] = useState (true);
@@ -60,8 +72,13 @@ const MyMap = (props) => {
 //   setMarkers(markers)
 // }
 const  addMarker = () => {
-  markers.push([40.7516, -3.8859])
+  
+  getCoor();
+  for (let item of routesCoor)
+  markers.push(item)
   setMarkers(markers)
+  console.log(routesCoor)
+  console.log(markers)
 }
 
 
@@ -82,7 +99,7 @@ const  addMarker = () => {
     const positionGreen = [coordinates.greenIcon.lat, coordinates.greenIcon.lng];
     return (
       <div>
-      {/* <button type="button" onClick={handleHidden}>Locate yourself</button> */}
+      
       <button type="button" onClick={moveMarker}>Locate yourself</button>
       <button type="button" onClick={addMarker}>Locate routes</button>
       <Map className = "map" center={position} zoom={coordinates.zoom} >
@@ -96,26 +113,18 @@ const  addMarker = () => {
         </Popup>
       </Marker>
 
-      {/* <Marker position={position} icon={myIcon} className = "myposition">
-        <Popup>
-          A pretty CSS3 popup. <br /> Easily customizable.
-        </Popup>
-      </Marker> */}
-       {/* {markers.map((myPosition, idx) => 
+      
+       {markers.map((myPosition, idx) => 
           <Marker key={`marker-${idx}`} position={myPosition} icon={greenIcon}>
           <Popup>
             <span>Popup</span>
           </Popup>
         </Marker>
-        )} */}
+        )}
 
 
 
-      {/* <Marker position={position} icon={myIcon} >
-        <Popup>
-          A pretty CSS3 popup. <br /> Easily customizable.
-        </Popup>
-      </Marker>
+      {/* 
       <Marker position={positionGreen} icon={greenIcon} >
         <Popup>
           A pretty CSS3 popup. <br /> Easily customizable.
