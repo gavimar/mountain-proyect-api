@@ -97,11 +97,8 @@ const  addMarker = () => {
     const position = [coordinates.lat, coordinates.lng];
     
     const positionGreen = [coordinates.greenIcon.lat, coordinates.greenIcon.lng];
-    return (
-      <div>
-      
-      <button type="button" onClick={moveMarker}>Locate yourself</button>
-      <button type="button" onClick={addMarker}>Locate routes</button>
+
+    React.useEffect(() => {
       <Map className = "map" center={position} zoom={coordinates.zoom} >
       <TileLayer
         attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
@@ -122,15 +119,15 @@ const  addMarker = () => {
         </Marker>
         )}
 
-
-
-      {/* 
-      <Marker position={positionGreen} icon={greenIcon} >
-        <Popup>
-          A pretty CSS3 popup. <br /> Easily customizable.
-        </Popup>
-      </Marker> */}
     </Map>
+    }, [markers]);
+
+    return (
+      <div>
+      <div id="map"></div>
+      <button type="button" onClick={moveMarker}>Locate yourself</button>
+      <button type="button" onClick={addMarker}>Locate routes</button>
+      
     </div>
     )
 
