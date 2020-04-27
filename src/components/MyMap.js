@@ -36,13 +36,35 @@ const MyMap = (props) => {
       }
     
   }
+
+  const [markerPosition, setMarkerPosition] = useState({
+    lat: 49.8419,
+    lng: 24.0315
+  });
+  const { lat, lng } = markerPosition;
+
+  function moveMarker() {
+    setMarkerPosition({
+      lat: 40.404306399999996,
+      lng: -3.6521948
+    });
+  }
+
   let [markers, setMarkers] = useState ([[40.404306399999996, -3.6521948]])
   console.log(markers)
 
+  let [hidden, setHidden] = useState (true);
+
+// const  addMarker = () => {
+//   markers.push([40.7516, -3.8859])
+//   setMarkers(markers)
+// }
 const  addMarker = () => {
   markers.push([40.7516, -3.8859])
   setMarkers(markers)
 }
+
+
 
   const greenIcon = L.icon({
     iconUrl : GreenLeaf,
@@ -56,22 +78,39 @@ const  addMarker = () => {
 
   
     const position = [coordinates.lat, coordinates.lng];
+    
     const positionGreen = [coordinates.greenIcon.lat, coordinates.greenIcon.lng];
     return (
       <div>
-      <button type="button" onClick={addMarker}>Locate yourself</button>
+      {/* <button type="button" onClick={handleHidden}>Locate yourself</button> */}
+      <button type="button" onClick={moveMarker}>Locate yourself</button>
+      <button type="button" onClick={addMarker}>Locate routes</button>
       <Map className = "map" center={position} zoom={coordinates.zoom} >
       <TileLayer
         attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
-       {markers.map((myPosition, idx) => 
-          <Marker key={`marker-${idx}`} position={myPosition} icon={myIcon}>
+      <Marker position={markerPosition} icon={myIcon} className = "myposition" icon = {myIcon}>
+        <Popup>
+          A pretty CSS3 popup. <br /> Easily customizable.
+        </Popup>
+      </Marker>
+
+      {/* <Marker position={position} icon={myIcon} className = "myposition">
+        <Popup>
+          A pretty CSS3 popup. <br /> Easily customizable.
+        </Popup>
+      </Marker> */}
+       {/* {markers.map((myPosition, idx) => 
+          <Marker key={`marker-${idx}`} position={myPosition} icon={greenIcon}>
           <Popup>
             <span>Popup</span>
           </Popup>
         </Marker>
-        )}
+        )} */}
+
+
+
       {/* <Marker position={position} icon={myIcon} >
         <Popup>
           A pretty CSS3 popup. <br /> Easily customizable.

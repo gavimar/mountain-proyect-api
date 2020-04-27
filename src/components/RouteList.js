@@ -19,9 +19,20 @@ const RouteList = (props) => {
     .then(data => setData(data.routes))
     .catch(() => setErrors(true));
     console.log(data);
+    getCoor();
+    console.log (routesCoor)
 
 }
 
+const [routesCoor, setCoor] = useState([]);
+
+const getCoor = () => {
+  for (let route of data){
+    routesCoor.push([route.longitude, route.latitude])
+    setCoor(routesCoor)
+  } return routesCoor;
+  
+}
 
 
 
