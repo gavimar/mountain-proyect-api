@@ -6,6 +6,7 @@ import LeafShadow from '../images/leaf-shadow.png';
 import RedLeaf from '../images/leaf-red.png';
 import OrangeLeaaf from '../images/leaf-orange.png';
 
+
 // type State = {
 //   lat: number,
 //   lng: number,
@@ -97,6 +98,9 @@ const  addMarker = () => {
     const position = [coordinates.lat, coordinates.lng];
     
     const positionGreen = [coordinates.greenIcon.lat, coordinates.greenIcon.lng];
+
+   
+
     return (
       <div>
       
