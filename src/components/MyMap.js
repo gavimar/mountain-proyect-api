@@ -42,6 +42,9 @@ const MyMap = (props) => {
     lat: 49.8419,
     lng: 24.0315
   });
+
+
+
   const { lat, lng } = markerPosition;
 
   function moveMarker() {
@@ -53,18 +56,10 @@ const MyMap = (props) => {
     });
   }
 
-  const [routesCoor, setCoor] = useState([]);
 
-const getCoor = () => {
-  for (let route of props.data){
-    routesCoor.push([route.longitude, route.latitude])
-    setCoor(routesCoor)
-  } return routesCoor;
-  
-}
 
-  let [markers, setMarkers] = useState ([[49.8419, 24]])
-  console.log(markers)
+
+ 
 
   let [hidden, setHidden] = useState (true);
 
@@ -72,15 +67,7 @@ const getCoor = () => {
 //   markers.push([40.7516, -3.8859])
 //   setMarkers(markers)
 // }
-const  addMarker = () => {
-  
-  getCoor();
-  for (let item of routesCoor)
-  markers.push(item)
-  setMarkers(markers)
-  console.log(routesCoor)
-  console.log(markers)
-}
+
 
 
 
@@ -97,15 +84,16 @@ const  addMarker = () => {
   
     const position = [coordinates.lat, coordinates.lng];
     
-    const positionGreen = [coordinates.greenIcon.lat, coordinates.greenIcon.lng];
+    // const positionGreen = [coordinates.greenIcon.lat, coordinates.greenIcon.lng];
 
    
 
     return (
+      
       <div>
       
       <button type="button" onClick={moveMarker}>Locate yourself</button>
-      <button type="button" onClick={addMarker}>Locate routes</button>
+      
       <Map className = "map" center={position} zoom={coordinates.zoom} >
       <TileLayer
         attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
@@ -117,8 +105,14 @@ const  addMarker = () => {
         </Popup>
       </Marker>
 
+      <Marker position={markerPosition} icon={greenIcon} className = "myposition" icon = {myIcon}>
+        <Popup>
+          A pretty CSS3 popup. <br /> Easily customizable.
+        </Popup>
+      </Marker>
+
       
-       {markers.map((myPosition, idx) => 
+       {props.markers.map((myPosition, idx) => 
           <Marker key={`marker-${idx}`} position={myPosition} icon={greenIcon}>
           <Popup>
             <span>Popup</span>

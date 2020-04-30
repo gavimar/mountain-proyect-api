@@ -10,6 +10,8 @@
     speed : null
   }
 
+  
+
   const AppFunction = () => {
     const [search, setSearch] = useState(false);
     
@@ -43,6 +45,8 @@
       }
       
     }
+
+    
     
     // const getClosest =() =>{
     //   setSearch(!search);

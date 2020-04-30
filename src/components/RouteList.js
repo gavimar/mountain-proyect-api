@@ -22,20 +22,48 @@ const RouteList = (props) => {
     
 
 }
+let [markers, setMarkers] = useState ([[40.404306399999996,-3.6521948]])
+console.log(markers)
 
 
+
+const  addMarker = () => {
+  
+  getCoor();
+  for (let item of routesCoor)
+  markers.push(item)
+  setMarkers(markers)
+  console.log(routesCoor)
+  console.log(markers)
+}
+
+const [routesCoor, setCoor] = useState([]);
+
+const getCoor = () => {
+  for (let route of data){
+    routesCoor.push([route.latitude, route.longitude])
+    setCoor(routesCoor)
+  } return routesCoor;
+  
+}
 
 
 
 return(
 
   <div className="search-container">
+    <button type="button" onClick={addMarker}>Locate routes</button>
     <div className="mapid"></div>
-    <MyMap
+    <div className ="MyMap">
+    { markers.length>1 ? <MyMap
     latitude = {props.latitude}
     longitude = {props.longitude}
     data = {data}
-    ></MyMap>
+    markers = {markers}
+    
+    ></MyMap> : '' }
+    </div>
+    
   
   <ul>
     <button onClick = {getClosest}>Fetchclosest</button>
@@ -49,7 +77,9 @@ return(
    photo = {routeObj.imgSmall}
    url = {routeObj.url}
    name = {routeObj.name}
- 
+   routeLat = {routeObj.latitude}
+   routeLong = {routeObj.longitude}
+   
   
   /> 
   
