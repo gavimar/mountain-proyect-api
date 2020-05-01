@@ -55,14 +55,14 @@
     return(
       <div className ="wrapper">
       <header className="header">
-      <h1>Rock climbing routes finder</h1>
+      <h1>Climb Around</h1>
       {/* <button type="button" className="closestButton" onClick={getClosest}>Get closest</button> */}
     </header>
       
-      <h2>Geo location</h2>
+      {/* <h2>Geo location</h2>
       <p className="longitude">Longitude : {longitude}</p>
-      <p className="latitude">Latitude : {latitude}</p>
-      <p className="speed">Speed : {speed ? speed : '0'}</p>
+      <p className="latitude">Latitude : {latitude}</p> */}
+      
       <RouteList
       latitude = {latitude}
       longitude = {longitude}

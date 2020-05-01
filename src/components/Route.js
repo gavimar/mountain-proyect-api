@@ -14,9 +14,9 @@ const Route = (props) => {
     return (
         <div>
         <li className="route" id={props.key} onClick={handleCoor} >
-    <   h1>{props.name}</h1>
+        <a href={props.url}>{props.name}</a>
             <img src={props.photo} alt={props.name} />
-            <a href={props.url}>Url</a>
+            
         </li>
         </div>
         );
