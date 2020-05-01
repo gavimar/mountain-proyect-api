@@ -82,7 +82,8 @@ const MyMap = (props) => {
   })
 
   
-    const position = [coordinates.lat, coordinates.lng];
+    // const position = [coordinates.lat, coordinates.lng];
+    const position = [props.latitude, props.longitude];
     
     // const positionGreen = [coordinates.greenIcon.lat, coordinates.greenIcon.lng];
 
@@ -115,7 +116,7 @@ const MyMap = (props) => {
        {props.markers.map((myPosition, idx) => 
           <Marker key={`marker-${idx}`} position={myPosition.itemCoor} icon={greenIcon}>
           <Popup>
-       <a href={myPosition.url}>{myPosition.itemName}</a>
+       <a href={myPosition.itemUrl}>{myPosition.itemName}</a>
        
           </Popup>
         </Marker>
