@@ -22,30 +22,27 @@ const RouteList = (props) => {
     
 
 }
-let [markers, setMarkers] = useState ([[40.404306399999996,-3.6521948]])
-console.log(markers)
-
+let [markers, setMarkers] = useState ([{
+  itemCoor: [40.7137,-3.9183],
+  itemName:'Putifero',
+  itemUrl:'https://www.mountainproject.com/route/107627464/putifero'}])
+  console.log(markers)
 
 
 const  addMarker = () => {
   
-  getCoor();
-  for (let item of routesCoor)
-  markers.push(item)
-  setMarkers(markers)
-  console.log(routesCoor)
-  console.log(markers)
-}
-
-const [routesCoor, setCoor] = useState([]);
-
-const getCoor = () => {
   for (let route of data){
-    routesCoor.push([route.latitude, route.longitude])
-    setCoor(routesCoor)
-  } return routesCoor;
-  
+    let itemInfo ={
+      itemCoor: [route.latitude, route.longitude],
+      itemName: route.name,
+      itemUrl:route.url
+
+    }
+    markers.push(itemInfo)
+    setMarkers(markers)
+  } 
 }
+
 
 
 
