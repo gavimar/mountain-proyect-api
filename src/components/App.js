@@ -19,12 +19,23 @@
     
     const [{longitude, latitude}, setLocalPosition] = useState(geoPosition)
     let mounted = true;
+
+    const [data, setData] = useState([]);  // eliminar Api
+  const  [hasError, setErrors] =  useState(false);
     
     useEffect(() => {
       
       
       navigator.geolocation.getCurrentPosition(handlePosition);
       const geoID = navigator.geolocation.watchPosition(handlePosition);
+
+          fetch(`https://www.mountainproject.com/data/get-routes-for-lat-lon?lat=-3&lon=42&maxDistance=100&minDiff=5.6&maxDiff=5.10&key=200719178-8e0de0f7ec53dfe8e72e54c34f99e721`)
+         
+          .then(res => res.json())
+          .then(data => setData(data.routes))
+          .catch(() => setErrors(true));
+          console.log(data);
+          // addMarker();
       
       return () => {
         
@@ -47,10 +58,10 @@
     }
 
     
-    
-    // const getClosest =() =>{
-    //   setSearch(!search);
-    // }
+   
+      
+      
+      
 
     return(
       <div className ="wrapper">
