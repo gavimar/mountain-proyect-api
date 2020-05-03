@@ -33,8 +33,22 @@
       }
       
     }, [])
+
+    const [data, setData] = useState([]);  // eliminar Api
+  const  [hasError, setErrors] =  useState(false);
     
+    useEffect (()=>{
+      // fetch(`https://www.mountainproject.com/data/get-routes-for-lat-lon?lat=${props.latitude}&lon=${props.longitude}&maxDistance=100&minDiff=5.6&maxDiff=5.10&key=200719178-8e0de0f7ec53dfe8e72e54c34f99e721`)
+      fetch(`https://www.mountainproject.com/data/get-routes-for-lat-lon?lat=-3.9183&lon=40.7137&maxDistance=100&minDiff=5.6&maxDiff=5.10&key=200719178-8e0de0f7ec53dfe8e72e54c34f99e721`)
+      .then(res => res.json())
+      .then(response => setData(response.routes))
+      .catch(() => setErrors(true));
+      
+      // addMarker();
+  
+  }, [])
     
+  console.log(data);
     
     const handlePosition = event => {
       if(mounted){
@@ -53,21 +67,23 @@
     // }
 
     return(
+      
       <div className ="wrapper">
       <header className="header">
       <h1>Climb Around</h1>
       {/* <button type="button" className="closestButton" onClick={getClosest}>Get closest</button> */}
     </header>
-      
-      {/* <h2>Geo location</h2>
-      <p className="longitude">Longitude : {longitude}</p>
-      <p className="latitude">Latitude : {latitude}</p>  */}
-      
+    {data!==[]?
+            
       <RouteList
+      data = {data}
       latitude = {latitude}
       longitude = {longitude}
       search = {search}/>
+      : <div><p>Wait</p></div>
+    }
       </div>
+    
       )
     }
     

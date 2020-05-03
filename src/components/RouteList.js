@@ -11,24 +11,15 @@ const RouteList = (props) => {
   console.log(props.longitude)
   console.log(props.latitude)
  
-  const [dataApi, setData] = useState([]);  // eliminar Api
-  const  [hasError, setErrors] =  useState(false);
+  
 
   const [hidden, setHidden] = useState(true);
 
-  const data = RoutesObj; //eliminar lineas
-  console.log(data)
+  // const data = RoutesObj; //eliminar lineas
+  // console.log(data)
 
-  const getClosest =() =>{
-    // fetch(`https://www.mountainproject.com/data/get-routes-for-lat-lon?lat=36.756960299999996&lon=-3.5237079&maxDistance=100&minDiff=5.6&maxDiff=5.10&key=200719178-8e0de0f7ec53dfe8e72e54c34f99e721`)
-    fetch(`https://www.mountainproject.com/data/get-routes-for-lat-lon?lat=${props.latitude}&lon=${props.longitude}&maxDistance=100&minDiff=5.6&maxDiff=5.10&key=200719178-8e0de0f7ec53dfe8e72e54c34f99e721`)
-    .then(res => res.json())
-    .then(data => setData(data.routes))
-    .catch(() => setErrors(true));
-    console.log(data);
-    // addMarker();
+ 
 
-}
 let [markers, setMarkers] = useState ([{
   itemCoor: [40.7137,-3.9183],
   itemName:'Putifero',
@@ -40,7 +31,7 @@ const  addMarker = () => {
 
   setHidden(false)
   
-  for (let route of data){
+  for (let route of props.data){
     let itemInfo ={
       itemCoor: [route.latitude, route.longitude],
       itemName: route.name,
@@ -59,13 +50,13 @@ return(
 
   <div className="search-container">
     <div className= "map-container">
-   <button type="button" onClick={addMarker}>Locate routes</button>
+   <button type="button" onClick={addMarker}>Check routes on a map</button>
     {/* <div className="mapid"></div> */}
     <div className ="MyMap">
     { markers.length>1 ? <MyMap
     latitude = {props.latitude}
     longitude = {props.longitude}
-    data = {data}
+    data = {props.data}
     markers = {markers}
     
     ></MyMap> : <Loader hidden = {hidden}/> }
@@ -74,12 +65,12 @@ return(
     </div>
     
   <div className="list-container">
-  <button onClick = {getClosest}>Fetchclosest</button>
+  {/* <button onClick = {getClosest}>Fetchclosest</button> */}
   <ul>
     
    
     
-  {data&&data.map((routeObj) => 
+  {props.data&&props.data.map((routeObj) => 
   
    <Route
    key = {routeObj.id}
