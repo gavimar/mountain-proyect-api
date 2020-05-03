@@ -1,5 +1,5 @@
 import React from 'react';
-import imageNotFound from '../images/imageNotFound.png';
+import imageNotFound from '../images/imageNotFound3.jpg';
 
 
 
@@ -13,28 +13,23 @@ const Route = (props) => {
         
     }
 
-    let routePhoto;
-    if (props.photo !== ""){
-        routePhoto = props.photo;
-        
-      } else{
-        routePhoto = imageNotFound ;
-        
-      }
+    
+    
+    const routePhoto = props.photo ? props.photo : imageNotFound
 
       
-    
-    
     return (
         <div>
         <li className="route" id={props.key} onClick={handleCoor} >
            
-        <a href={props.url}>{props.name}</a>
+        <h2>{props.name}</h2>
         <img src={routePhoto} alt={props.name} />
         <p>Location: {props.location.join(', ')}</p>
         <p>Difficulty: {props.rating}</p>
     <p>Stars: {props.stars}</p>
     <p>Type: {props.type}</p>
+    <a href={props.url}>Click here to go to route page</a>
+    
             
             
             
