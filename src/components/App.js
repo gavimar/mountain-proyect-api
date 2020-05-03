@@ -17,7 +17,7 @@
     
     
     
-    const [{longitude, latitude, speed}, setLocalPosition] = useState(geoPosition)
+    const [{longitude, latitude}, setLocalPosition] = useState(geoPosition)
     let mounted = true;
     
     useEffect(() => {
@@ -61,7 +61,7 @@
       
       {/* <h2>Geo location</h2>
       <p className="longitude">Longitude : {longitude}</p>
-      <p className="latitude">Latitude : {latitude}</p> */}
+      <p className="latitude">Latitude : {latitude}</p>  */}
       
       <RouteList
       latitude = {latitude}

@@ -89,6 +89,10 @@ return(
    name = {routeObj.name}
    routeLat = {routeObj.latitude}
    routeLong = {routeObj.longitude}
+   location = {routeObj.location}
+   rating = {routeObj.rating}
+   stars = {routeObj.stars}
+   type = {routeObj.type}
    
   
   /> 
