@@ -40,13 +40,21 @@
     
   useEffect(() => {
     const fetchData = async () => {
-    const response = await axios.get('https://www.mountainproject.com/data/get-routes-for-lat-lon?lat=36.7569945&lon=-3.5237027&maxDistance=100&minDiff=5.6&maxDiff=5.10&key=200719178-8e0de0f7ec53dfe8e72e54c34f99e721');
+    const response = await axios.get('https://www.mountainproject.com/data/get-routes-for-lat-lon?lat=40.4165001&lon=-3.7025599&maxDistance=100&minDiff=5.6&maxDiff=5.10&key=200719178-8e0de0f7ec53dfe8e72e54c34f99e721');
       setData(response.data.routes);
       console.log(response.data)
     }
       
     fetchData();
   }, []);
+
+  const getClosest = async() => {
+    const response = await axios.get(`https://www.mountainproject.com/data/get-routes-for-lat-lon?lat=${latitude}&lon=${longitude}&maxDistance=100&minDiff=5.6&maxDiff=5.10&key=200719178-8e0de0f7ec53dfe8e72e54c34f99e721`);
+      setData(response.data.routes);
+      console.log(response.data)
+    }
+  
+
 
   //   useEffect (()=>{
   //     // fetch(`https://www.mountainproject.com/data/get-routes-for-lat-lon?lat=${props.latitude}&lon=${props.longitude}&maxDistance=100&minDiff=5.6&maxDiff=5.10&key=200719178-8e0de0f7ec53dfe8e72e54c34f99e721`)
@@ -82,15 +90,16 @@
       <div className ="wrapper">
       <header className="header">
       <h1>Climb Around</h1>
-      {/* <button type="button" className="closestButton" onClick={getClosest}>Get closest</button> */}
+      
     </header>
     {data!==[]?
-            
+           
       <RouteList
       data = {data}
       latitude = {latitude}
       longitude = {longitude}
-      search = {search}/>
+      search = {search}
+      getClosest={getClosest}/>
       : <div><p>Wait</p></div>
     }
       </div>

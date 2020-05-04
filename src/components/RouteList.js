@@ -50,6 +50,7 @@ return(
 
   <div className="search-container">
     <div className= "map-container">
+    <button type="button" className="closestButton" onClick={props.getClosest}>Get closest</button>
    <button type="button" onClick={addMarker}>Check routes on a map</button>
     {/* <div className="mapid"></div> */}
     <div className ="MyMap">
