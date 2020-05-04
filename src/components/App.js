@@ -1,6 +1,7 @@
   import React,{useState, useEffect} from 'react';
   import RouteList from './RouteList';
   import '../stylesheets/App.scss';
+  import axios from "axios";
  
 
 
@@ -37,16 +38,26 @@
     const [data, setData] = useState([]);  // eliminar Api
   const  [hasError, setErrors] =  useState(false);
     
-    useEffect (()=>{
-      // fetch(`https://www.mountainproject.com/data/get-routes-for-lat-lon?lat=${props.latitude}&lon=${props.longitude}&maxDistance=100&minDiff=5.6&maxDiff=5.10&key=200719178-8e0de0f7ec53dfe8e72e54c34f99e721`)
-      fetch(`https://www.mountainproject.com/data/get-routes-for-lat-lon?lat=-3.9183&lon=40.7137&maxDistance=100&minDiff=5.6&maxDiff=5.10&key=200719178-8e0de0f7ec53dfe8e72e54c34f99e721`)
-      .then(res => res.json())
-      .then(response => setData(response.routes))
-      .catch(() => setErrors(true));
+  useEffect(() => {
+    const fetchData = async () => {
+    const response = await axios.get('https://www.mountainproject.com/data/get-routes-for-lat-lon?lat=36.7569945&lon=-3.5237027&maxDistance=100&minDiff=5.6&maxDiff=5.10&key=200719178-8e0de0f7ec53dfe8e72e54c34f99e721');
+      setData(response.data.routes);
+      console.log(response.data)
+    }
       
-      // addMarker();
+    fetchData();
+  }, []);
+
+  //   useEffect (()=>{
+  //     // fetch(`https://www.mountainproject.com/data/get-routes-for-lat-lon?lat=${props.latitude}&lon=${props.longitude}&maxDistance=100&minDiff=5.6&maxDiff=5.10&key=200719178-8e0de0f7ec53dfe8e72e54c34f99e721`)
+  //     fetch(`https://www.mountainproject.com/data/get-routes-for-lat-lon?lat=-3.9183&lon=40.7137&maxDistance=100&minDiff=5.6&maxDiff=5.10&key=200719178-8e0de0f7ec53dfe8e72e54c34f99e721`)
+  //     .then(res => res.json())
+  //     .then(response => setData(response.routes))
+  //     .catch(() => setErrors(true));
+      
+  //     // addMarker();
   
-  }, [])
+  // }, [])
     
   console.log(data);
     
