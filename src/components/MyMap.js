@@ -74,10 +74,10 @@ const MyMap = (props) => {
   const greenIcon = L.icon({
     iconUrl : GreenLeaf,
     shadowUrl : LeafShadow,
-    iconSize:     [38, 95], // size of the icon
+    iconSize:     [38, 95], 
     shadowSize:   [50, 64], 
-    iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
-    shadowAnchor: [4, 62],  // the same for the shadow
+    iconAnchor:   [22, 94], 
+    shadowAnchor: [4, 62],  
     popupAnchor:  [-3, -76] 
   })
 
@@ -85,15 +85,16 @@ const MyMap = (props) => {
     // const position = [coordinates.lat, coordinates.lng];
     const position = [props.latitude, props.longitude];
     
-    // const positionGreen = [coordinates.greenIcon.lat, coordinates.greenIcon.lng];
+    
 
    
 
     return (
       
-      <div>
+      <div className="map-area">
       
-      <button type="button" onClick={moveMarker}>Locate yourself</button>
+      <button type="button" className ="button" onClick={moveMarker}>Locate yourself</button>
+      <p>Searched routes are within a maximum distance of 160km, so you might need to zoom out (-) the map in order to see all the route markers.</p>
       
       <Map className = "map" center={position} zoom={coordinates.zoom} >
       <TileLayer

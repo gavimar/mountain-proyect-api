@@ -41,7 +41,48 @@ const  addMarker = () => {
     markers.push(itemInfo)
     setMarkers(markers)
   } 
+
+  const loading = () =>{
+    if (markers.length>1){ setIsLoading(false) }}
+
+    loading();
+
 }
+
+const handleButton = () =>{
+  props.getClosest();
+  
+  console.log(props.getClosest());
+
+  setHiddenButton(false)
+
+  // const  addMarker = async() => {
+  // const result = await props.getClosest().resolve;
+
+    
+  //   result.then(()=>{
+    
+  //   for (let route of props.data){
+  //     let itemInfo ={
+  //       itemCoor: [route.latitude, route.longitude],
+  //       itemName: route.name,
+  //       itemUrl:route.url
+  
+  //     }
+  //     markers.push(itemInfo)
+  //     setMarkers(markers)
+  //   } })
+     
+  // }
+
+  // addMarker();
+
+  
+ 
+}
+
+const [isLoading, setIsLoading] = useState(true)
+const [hiddenButton, setHiddenButton] = useState(true)
 
 
 
@@ -50,11 +91,13 @@ return(
 
   <div className="search-container">
     <div className= "map-container">
-    <button type="button" className="closestButton" onClick={props.getClosest}>Get closest</button>
-   <button type="button" onClick={addMarker}>Check routes on a map</button>
+    <button type="button" className="button" onClick={handleButton}>Get your closest routes</button>
+    <button type="button" className={`button ${hiddenButton === true ? "hidden" : ""}`} onClick={addMarker}>Check routes on a map</button>
     {/* <div className="mapid"></div> */}
     <div className ="MyMap">
-    { markers.length>1 ? <MyMap
+    {/* { markers.length>1 ?  */}
+    {isLoading === false?
+    <MyMap
     latitude = {props.latitude}
     longitude = {props.longitude}
     data = {props.data}

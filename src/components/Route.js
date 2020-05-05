@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import imageNotFound from '../images/imageNotFound3.jpg';
+
 
 
 
@@ -19,7 +20,7 @@ const Route = (props) => {
 
       
     return (
-        <div>
+        <Fragment>
         <li className="route" id={props.key} onClick={handleCoor} >
            
         <h2>{props.name}</h2>
@@ -34,7 +35,7 @@ const Route = (props) => {
             
             
         </li>
-        </div>
+        </Fragment>
         );
 }
 
