@@ -54,30 +54,7 @@ const handleButton = () =>{
   
   console.log(props.getClosest());
 
-  setHiddenButton(false)
-
-  // const  addMarker = async() => {
-  // const result = await props.getClosest().resolve;
-
-    
-  //   result.then(()=>{
-    
-  //   for (let route of props.data){
-  //     let itemInfo ={
-  //       itemCoor: [route.latitude, route.longitude],
-  //       itemName: route.name,
-  //       itemUrl:route.url
-  
-  //     }
-  //     markers.push(itemInfo)
-  //     setMarkers(markers)
-  //   } })
-     
-  // }
-
-  // addMarker();
-
-  
+  setHiddenButton(false)  
  
 }
 
@@ -85,55 +62,46 @@ const [isLoading, setIsLoading] = useState(true)
 const [hiddenButton, setHiddenButton] = useState(true)
 
 
-
-
 return(
 
   <div className="search-container">
     <div className= "map-container">
-    <button type="button" className="button" onClick={handleButton}>Get your closest routes</button>
-    <button type="button" className={`button ${hiddenButton === true ? "hidden" : ""}`} onClick={addMarker}>Check routes on a map</button>
-    {/* <div className="mapid"></div> */}
-    <div className ="MyMap">
-    {/* { markers.length>1 ?  */}
-    {isLoading === false?
-    <MyMap
-    latitude = {props.latitude}
-    longitude = {props.longitude}
-    data = {props.data}
-    markers = {markers}
-    
-    ></MyMap> : <Loader hidden = {hidden}/> }
-    </div>
+      <button type="button" className="button" onClick={handleButton}>Get your closest routes</button>
+      <button type="button" className={`button ${hiddenButton === true ? "hidden" : ""}`} onClick={addMarker}>Check routes on a map</button>
+      <div className ="MyMap">
+        {isLoading === false?
+        <MyMap
+        latitude = {props.latitude}
+        longitude = {props.longitude}
+        data = {props.data}
+        markers = {markers}
+        >
+        </MyMap> : <Loader hidden = {hidden}/> }
+      </div>
 
     </div>
     
   <div className="list-container">
-  {/* <button onClick = {getClosest}>Fetchclosest</button> */}
-  <ul>
-    
-   
-    
-  {props.data&&props.data.map((routeObj) => 
   
-   <Route
-   key = {routeObj.id}
-   title = {routeObj.name}
-   photo = {routeObj.imgSmall}
-   url = {routeObj.url}
-   name = {routeObj.name}
-   routeLat = {routeObj.latitude}
-   routeLong = {routeObj.longitude}
-   location = {routeObj.location}
-   rating = {routeObj.rating}
-   stars = {routeObj.stars}
-   type = {routeObj.type}
-   
+    <ul>
+      {props.data&&props.data.map((routeObj) => 
   
-  /> 
+      <Route
+      key = {routeObj.id}
+      title = {routeObj.name}
+      photo = {routeObj.imgSmall}
+      url = {routeObj.url}
+      name = {routeObj.name}
+      routeLat = {routeObj.latitude}
+      routeLong = {routeObj.longitude}
+      location = {routeObj.location}
+      rating = {routeObj.rating}
+      stars = {routeObj.stars}
+      type = {routeObj.type}
+      /> 
   
-  )} 
-  </ul>
+      )} 
+    </ul>
   </div>
 
   
