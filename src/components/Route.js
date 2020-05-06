@@ -26,7 +26,7 @@
                 <p>Difficulty: {props.rating}</p>
                 <p>Stars: {props.stars}</p>
                 <p>Type: {props.type}</p>
-                <a href={props.url}>Click here to go to route page</a>   
+                <p>Click<a href={props.url}>here</a>to go to route page.</p>   
             </li>
             </Fragment>
             );

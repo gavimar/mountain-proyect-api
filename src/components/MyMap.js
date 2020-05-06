@@ -19,7 +19,7 @@
     const coordinates = {
       lat: 40.404306399999996,
       lng: -3.6521948,
-      zoom: 13,
+      zoom: 8,
       
       greenIcon:{
         lat: 40.7516 ,
@@ -71,7 +71,7 @@
       <div className="map-area">
       
       <button type="button" className ="button" onClick={moveMarker}>Locate yourself</button>
-      <p>Searched routes are within a maximum distance of 160km, so you might need to zoom out (-) the map in order to see all the route markers.</p>
+      
       
       <Map className = "map" center={position} zoom={coordinates.zoom} >
       <TileLayer
@@ -79,15 +79,6 @@
       url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
       <Marker position={markerPosition} icon={myIcon} className = "myposition" icon = {myIcon}>
-      <Popup>
-      A pretty CSS3 popup. <br /> Easily customizable.
-      </Popup>
-      </Marker>
-      
-      <Marker position={markerPosition} icon={greenIcon} className = "myposition" icon = {myIcon}>
-      <Popup>
-      A pretty CSS3 popup. <br /> Easily customizable.
-      </Popup>
       </Marker>
       
       
@@ -101,6 +92,9 @@
         )}
         
         </Map>
+        
+        <p>Markers might take about a minute to load please wait.</p>
+
         </div>
         )
         
