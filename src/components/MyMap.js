@@ -63,7 +63,7 @@
     const position = [props.latitude, props.longitude];
     
     
-    
+    console.log(props.markers)
     
     
     return (

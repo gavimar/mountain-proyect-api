@@ -13,52 +13,33 @@ const RouteList = (props) => {
  
   
 
-  const [hidden, setHidden] = useState(true);
+ 
 
   // const data = RoutesObj; //eliminar lineas
   // console.log(data)
 
  
 
-let [markers, setMarkers] = useState ([{
-  itemCoor: [40.7137,-3.9183],
-  itemName:'Putifero',
-  itemUrl:'https://www.mountainproject.com/route/107627464/putifero'}])
-  console.log(markers)
 
 
-const  addMarker = () => {
+const handleButton = async () =>{
+  setHiddenButton(false)
 
-  setHidden(false)
+  // const tasks = async() =>{
+  props.getClosest()
   
-  for (let route of props.data){
-    let itemInfo ={
-      itemCoor: [route.latitude, route.longitude],
-      itemName: route.name,
-      itemUrl:route.url
-
-    }
-    markers.push(itemInfo)
-    setMarkers(markers)
-  } 
-
-  const loading = () =>{
-    if (markers.length>1){ setIsLoading(false) }}
-
-    loading();
-
-}
-
-const handleButton = () =>{
-  props.getClosest();
+  // .then(addMarker());
   
   console.log(props.getClosest());
 
-  setHiddenButton(false)  
+  
+
+  // const paintMarkers = await tasks;
+
  
 }
 
-const [isLoading, setIsLoading] = useState(true)
+
 const [hiddenButton, setHiddenButton] = useState(true)
 
 
@@ -67,16 +48,16 @@ return(
   <div className="search-container">
     <div className= "map-container">
       <button type="button" className="button" onClick={handleButton}>Get your closest routes</button>
-      <button type="button" className={`button ${hiddenButton === true ? "hidden" : ""}`} onClick={addMarker}>Check routes on a map</button>
+      {/* <button type="button" className={`button ${hiddenButton === true ? "hidden" : ""}`} onClick={addMarker}>Check routes on a map</button> */}
       <div className ="MyMap">
-        {isLoading === false?
+        {props.isLoading === false&& props.markers.length!=0?
         <MyMap
         latitude = {props.latitude}
         longitude = {props.longitude}
         data = {props.data}
-        markers = {markers}
+        markers = {props.markers}
         >
-        </MyMap> : <Loader hidden = {hidden}/> }
+        </MyMap> : <Loader hidden = {props.hidden}/> }
       </div>
 
     </div>
