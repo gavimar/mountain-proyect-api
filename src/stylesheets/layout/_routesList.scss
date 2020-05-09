@@ -32,10 +32,8 @@
       padding: 10px;
       border-radius: 10px;
       
-      
       &:hover{
         background-color: #daedbd;
-        
       }
       
     }
@@ -65,3 +63,11 @@
     
     
   }
+
+.list-container{
+  text-align: center;
+  p{
+    font-family: 'Noto Sans JP', sans-serif;
+    color:#20321b;
+  }
+}
