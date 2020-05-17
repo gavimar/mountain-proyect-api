@@ -24,7 +24,8 @@ const RouteList = (props) => {
               <button type="button" className="button" onClick={props.addMarker}>Check routes on a map</button>
               {/* <button type="button" className="button" onClick={renderMap}>Render map</button> */}
               <div className ="MyMap">
-                  {props.isLoading === false&& props.markers.length!=0?
+                  {/* {props.isLoading === false&& props.markers.length!=0? */}
+                  {props.markers.length!=0? 
                       <MyMap
                           latitude = {props.latitude}
                           longitude = {props.longitude}

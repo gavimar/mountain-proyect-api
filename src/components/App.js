@@ -42,10 +42,6 @@
         const  [hasError, setErrors] =  useState(false);
 
 
-    // let [markers, setMarkers] = useState ([{
-    //   itemCoor: [40.7137,-3.9183],
-    //   itemName:'Putifero',
-    //   itemUrl:'https://www.mountainproject.com/route/107627464/putifero'}])
       
       
          let [markers, setMarkers] = useState ([])
@@ -55,28 +51,35 @@
           const [hidden, setHidden] = useState(true);
           const [isLoading, setIsLoading] = useState(true)
 
-          const  addMarker = () => {
-    
-              setHidden(false)
+        
+
+        useEffect(() =>{
+                    setHidden(false)
+            // const  addMarker = () => {
+                for (let route of data){
+                    let itemInfo ={
+                        itemCoor: [route.latitude, route.longitude],
+                        itemName: route.name,
+                        itemUrl:route.url
+                    }
+                    
+                    setMarkers([...markers,itemInfo])
+                    
+                // } 
+  
+              
+                // const loading = () =>{
+                //     if (markers.length>1){ setIsLoading(false);
+                //     console.log(isLoading)} }
+  
+                // loading();
       
-              for (let route of data){
-                  let itemInfo ={
-                      itemCoor: [route.latitude, route.longitude],
-                      itemName: route.name,
-                      itemUrl:route.url
-                  }
-                  markers.push(itemInfo)
-                  setMarkers(markers)
-              } 
+                }
+            console.log(markers)
 
-            
-              const loading = () =>{
-                  if (markers.length>1){ setIsLoading(false);
-                  console.log(isLoading)} }
+        }, [data])
 
-              loading();
-    
-    }
+          console.log(markers)
     
 
         const getClosest = async() => {
@@ -105,7 +108,7 @@
                         getClosest={getClosest}
                         markers={markers}
                         hidden={hidden}
-                        addMarker={addMarker}
+                        // addMarker={addMarker}
                         isLoading={isLoading}
                     />
                     : <div><p>Wait</p></div>
