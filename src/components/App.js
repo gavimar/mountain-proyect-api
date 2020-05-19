@@ -15,17 +15,12 @@
  
         const [{longitude, latitude}, setLocalPosition] = useState(geoPosition)
 
-        // const [hidden, setHidden] = useState(true);
-        // const [isLoading, setIsLoading] = useState(true)
       
         useEffect(() => {
-          
             navigator.geolocation.getCurrentPosition(handlePosition);
             console.log(longitude)
-      
         }, [])
 
-      
 
         const handlePosition = async (event) => {
             setLocalPosition({

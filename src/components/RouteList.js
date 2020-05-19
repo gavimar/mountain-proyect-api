@@ -5,7 +5,6 @@ import MyMap from './MyMap';
 import Loader from './Loader';
 
 
-
 const RouteList = (props) => {
 
     console.log(props.longitude)
