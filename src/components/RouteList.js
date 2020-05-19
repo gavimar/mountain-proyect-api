@@ -11,27 +11,21 @@ const RouteList = (props) => {
     console.log(props.latitude)
 
 
-
-// const renderMap = () => {
-//   setIsLoading(false);
-// }
-
     return(
 
       <div className="search-container">
 
           <div className= "map-container">
-              <button type="button" className="button" onClick={props.addMarker}>Check routes on a map</button>
-              {/* <button type="button" className="button" onClick={renderMap}>Render map</button> */}
+              
               <div className ="MyMap">
-                  {props.isLoading === false && props.markers.length!=0?
+                  {props.markers.length!=0? 
                       <MyMap
                           latitude = {props.latitude}
                           longitude = {props.longitude}
                           data = {props.data}
                           markers = {props.markers}
                       >
-                      </MyMap> : <Loader hidden = {props.hidden}/> 
+                      </MyMap> : <Loader></Loader>
                   }
               </div>
           </div>

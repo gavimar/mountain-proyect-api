@@ -16,8 +16,8 @@
 
   const MyMap = (props) => {
 
-      console.log(props.latitude)
-      const coordinates = {
+        console.log(props.latitude)
+        const coordinates = {
           lat: 40.404306399999996,
           lng: -3.6521948,
           zoom: 8,
@@ -26,29 +26,26 @@
             lat: 40.7516 ,
             lng: -3.8859
           }  
-    }
+        }
     
-      const [markerPosition, setMarkerPosition] = useState({
+        const [markerPosition, setMarkerPosition] = useState({
           lat: 49.8419,
           lng: 24.0315
-      });
+         });
     
     
     
-      const { lat, lng } = markerPosition;
+        const { lat, lng } = markerPosition;
     
-      function moveMarker() {
-          setMarkerPosition({
+        function moveMarker() {
+            setMarkerPosition({
               lat: props.latitude,
               lng: props.longitude
-          });
-      }
+            });
+         }
     
     
-      // let [hidden, setHidden] = useState (true);
-    
-    
-      const greenIcon = L.icon({
+        const greenIcon = L.icon({
           iconUrl : GreenLeaf,
           shadowUrl : LeafShadow,
           iconSize:     [38, 95], 
@@ -58,10 +55,7 @@
           popupAnchor:  [-3, -76] 
       })
     
-    
-    
       const position = [props.latitude, props.longitude];
-    
     
       console.log(props.markers)
     
